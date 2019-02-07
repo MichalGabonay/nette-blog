@@ -1,0 +1,14 @@
+{block content}
+	<h1 n:block="title">Môj blog</h1>
+	<a n:href="Post:create" n:if="$user->loggedIn" class="btn btn-primary">Napísať nový príspvok</a>
+
+	<div n:foreach="$posts as $post" class="post">
+		<hr>
+		<div class="date">{$post->created_at|date:'F j, Y'}</div>
+
+		<h2><a n:href="Post:show $post->id">{$post->title}</a></h2>
+
+		<div>{$post->content}</div>
+		<a n:href="Post:edit $post->id" n:if="$user->loggedIn" class="btn btn-secondary btn-sm">Upraviť príspevok</a>
+	</div>
+{/block}
